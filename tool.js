@@ -99,7 +99,7 @@ class Tool {
                         break;
                 }
 
-                result.recommendations += ` The issue was detected on the following devices: ${faultyDevices.join(', ')}.`;
+                result.recommendations = [[result.recommendations + " The issue was detected on the following devices: %devices%.", { "%devices%": faultyDevices.join(', ') }]];
             }
         }
     }
