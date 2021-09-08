@@ -4,7 +4,7 @@
 		"title": "Horizontal overflow",
 		"description": "Checks to make sure that your website's content fits in the screen's width on mobiles and tablets.",
 		"weight": 0.3,
-		"score": 0.5,
+		"score": 0,
 		"snippets": [
 			"<main>"
 		],
@@ -21,8 +21,36 @@
 				"Resolution"
 			],
 			[
+				"iPhone 7",
+				"375x667"
+			],
+			[
+				"iPhone 7 landscape",
+				"667x375"
+			],
+			[
 				"iPhone XR",
 				"414x896"
+			],
+			[
+				"iPhone XR landscape",
+				"896x414"
+			],
+			[
+				"iPad",
+				"768x1024"
+			],
+			[
+				"iPad landscape",
+				"1024x768"
+			],
+			[
+				"iPad Pro",
+				"1024x1366"
+			],
+			[
+				"iPad Pro landscape",
+				"1366x1024"
 			]
 		]
 	},
@@ -31,15 +59,8 @@
 		"title": "Viewport meta tag",
 		"description": "Checks that your page has a `viewport` meta tag, which is required in order for your pages to be displayed correctly on mobiles and tablets. The following should work for most projects: `<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">`.",
 		"weight": 0.35,
-		"score": 0,
-		"snippets": [],
-		"recommendations": [
-			[
-				"Add a `viewport` meta tag to your page.",
-				{},
-				"ISSUE"
-			]
-		]
+		"score": 1,
+		"snippets": []
 	},
 	{
 		"uniqueName": "fontSize",

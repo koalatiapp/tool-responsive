@@ -75,7 +75,11 @@ class Tool {
 
 				if (!deviceResult.success) {
 					result.score -= .5;
-					result.snippets = result.snippets.concat(deviceResult.snippets || []);
+					result.snippets = result.snippets
+						.concat(deviceResult.snippets || [])
+						.filter((value, index, self) => {
+							return self.indexOf(value) === index;
+						});
 				}
 			}
 
@@ -139,7 +143,16 @@ class Tool {
 	}
 
 	async _analyze() {
-		const testDeviceNames = ["iPhone 7", "iPhone XR", "iPad", "iPad Pro"];
+		const testDeviceNames = [
+			"iPhone 7",
+			"iPhone 7 landscape",
+			"iPhone XR",
+			"iPhone XR landscape",
+			"iPad",
+			"iPad landscape",
+			"iPad Pro",
+			"iPad Pro landscape",
+		];
 		this._resultsByTest = {
 			"overflow": {},
 			"viewport": {},
@@ -192,8 +205,9 @@ class Tool {
 				return false;
 			};
 
-			const overflowSource = detectHorizontalOverflow(body);
+			let overflowSource = detectHorizontalOverflow(body);
 			if (overflowSource) {
+				overflowSource = overflowSource.cloneNode(true);
 				overflowSource.innerHTML = "";
 				overflowSource.style.minHeight = "";
 				overflowSource.style.display = "";
