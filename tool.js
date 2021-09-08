@@ -1,4 +1,4 @@
-"use strict";
+const { priorities } = require("@koalati/result-builder");
 
 class Tool {
 	constructor({ page, devices }) {
@@ -37,15 +37,15 @@ class Tool {
 				"uniqueName": "overflow",
 				"title": "Horizontal overflow",
 				"description": "Checks to make sure that your website's content fits in the screen's width on mobiles and tablets.",
-				"weight": .25,
+				"weight": .3,
 				"score": 1,
 				"snippets": [],
 			},
 			{
 				"uniqueName": "viewport",
 				"title": "Viewport meta tag",
-				"description": "Checks that your page has a `viewport` meta tag, which is required in order to adjust correctly on mobiles and tablets.",
-				"weight": .25,
+				"description": "Checks that your page has a `viewport` meta tag, which is required in order for your pages to be displayed correctly on mobiles and tablets. The following should work for most projects: `<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">`.",
+				"weight": .35,
 				"score": 1,
 				"snippets": [],
 			},
@@ -53,7 +53,7 @@ class Tool {
 				"uniqueName": "fontSize",
 				"title": "Font size readability",
 				"description": "Checks the font size for the text on your page to make sure it is not too small on mobiles and tablets. A font size of at least 12px is recommended for good reability and accessibility.",
-				"weight": .25,
+				"weight": .15,
 				"score": 1,
 				"snippets": [],
 			},
@@ -61,7 +61,7 @@ class Tool {
 				"uniqueName": "aspectRatios",
 				"title": "Images aspect ratio",
 				"description": "Checks the images on your page to make sure that they do not appear stretched or distorted on mobiles and tablets.",
-				"weight": .25,
+				"weight": .2,
 				"score": 1,
 				"snippets": [],
 			},
@@ -79,28 +79,61 @@ class Tool {
 				}
 			}
 
+			// Add list of affected devices
+			if (faultyDevices.length && result.uniqueName != "viewport") {
+				result.table = [
+					["Device it was detected on", "Resolution"],
+					...faultyDevices.map(device => [
+						device,
+						`${this.devices[device].viewport.width}x${this.devices[device].viewport.height}`
+					])
+				];
+			}
+
 			result.score = Math.max(0, result.score);
 
 			if (result.score < 1) {
 				switch (result.uniqueName) {
 				case "overflow":
-					result.recommendations = "Fix content causing horizontal overflow on your page.";
+					result.recommendations = [
+						[
+							"Fix content causing horizontal overflow on your page.",
+							{},
+							priorities.ESSENTIAL
+						]
+					];
 					break;
 
 				case "viewport":
-					result.recommendations = "Add a `viewport` meta tag to your page. The following should work for most projects: `<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">`.";
+					result.recommendations = [
+						[
+							"Add a `viewport` meta tag to your page.",
+							{},
+							priorities.ISSUE
+						]
+					];
 					break;
 
 				case "fontSize":
-					result.recommendations = "Update your CSS to make sure the text on your page always has a font size of 12px or more.";
+					result.recommendations = [
+						[
+							"Update your CSS to make sure the text on your page always has a font size of 12px or more.",
+							{},
+							result.score == 0 ? priorities.ESSENTIAL : priorities.OPTIMIZATION
+						]
+					];
 					break;
 
 				case "aspectRatios":
-					result.recommendations = "Update your CSS to fix distorted images on your page. The `object-fit` CSS property might be a good place to look.";
+					result.recommendations = [
+						[
+							"Update your CSS to fix distorted images on your page. The `object-fit` CSS property might be a good place to look.",
+							{},
+							result.score == 0 ? priorities.ESSENTIAL : priorities.OPTIMIZATION
+						]
+					];
 					break;
 				}
-
-				result.recommendations = [[result.recommendations + " The issue was detected on the following devices: %devices%.", { "%devices%": faultyDevices.join(", ") }]];
 			}
 		}
 	}

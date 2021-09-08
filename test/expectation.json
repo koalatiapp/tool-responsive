@@ -3,33 +3,41 @@
 		"uniqueName": "overflow",
 		"title": "Horizontal overflow",
 		"description": "Checks to make sure that your website's content fits in the screen's width on mobiles and tablets.",
-		"weight": 0.25,
+		"weight": 0.3,
 		"score": 0.5,
 		"snippets": [
 			"<main>"
 		],
 		"recommendations": [
 			[
-				"Fix content causing horizontal overflow on your page. The issue was detected on the following devices: %devices%.",
-				{
-					"%devices%": "iPhone XR"
-				}
+				"Fix content causing horizontal overflow on your page.",
+				{},
+				"ESSENTIAL"
+			]
+		],
+		"table": [
+			[
+				"Device it was detected on",
+				"Resolution"
+			],
+			[
+				"iPhone XR",
+				"414x896"
 			]
 		]
 	},
 	{
 		"uniqueName": "viewport",
 		"title": "Viewport meta tag",
-		"description": "Checks that your page has a `viewport` meta tag, which is required in order to adjust correctly on mobiles and tablets.",
-		"weight": 0.25,
+		"description": "Checks that your page has a `viewport` meta tag, which is required in order for your pages to be displayed correctly on mobiles and tablets. The following should work for most projects: `<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">`.",
+		"weight": 0.35,
 		"score": 0,
 		"snippets": [],
 		"recommendations": [
 			[
-				"Add a `viewport` meta tag to your page. The following should work for most projects: `<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">`. The issue was detected on the following devices: %devices%.",
-				{
-					"%devices%": "iPhone 7, iPhone XR, iPad, iPad Pro"
-				}
+				"Add a `viewport` meta tag to your page.",
+				{},
+				"ISSUE"
 			]
 		]
 	},
@@ -37,7 +45,7 @@
 		"uniqueName": "fontSize",
 		"title": "Font size readability",
 		"description": "Checks the font size for the text on your page to make sure it is not too small on mobiles and tablets. A font size of at least 12px is recommended for good reability and accessibility.",
-		"weight": 0.25,
+		"weight": 0.15,
 		"score": 1,
 		"snippets": []
 	},
@@ -45,7 +53,7 @@
 		"uniqueName": "aspectRatios",
 		"title": "Images aspect ratio",
 		"description": "Checks the images on your page to make sure that they do not appear stretched or distorted on mobiles and tablets.",
-		"weight": 0.25,
+		"weight": 0.2,
 		"score": 1,
 		"snippets": []
 	}
