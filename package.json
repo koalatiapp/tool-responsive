@@ -1,6 +1,6 @@
 {
   "name": "@koalati/tool-responsive",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Koalati tool that checks a web page for responsive design issues and inconsistencies.",
   "main": "tool.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "url": "git+https://github.com/koalatiapp/tool-responsive.git"
   },
   "keywords": [
-    "koalati"
+    "koalati",
+    "koalati-tool"
   ],
   "author": {
     "name": "Koalati",
