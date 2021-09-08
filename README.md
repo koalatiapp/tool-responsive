@@ -1,4 +1,7 @@
 # Responsive tool for Koalati
+[![npm (scoped)](https://img.shields.io/npm/v/@koalati/tool-responsive)](https://www.npmjs.com/package/@koalati/tool-responsive)
+[![GitHub CI Workflow status](https://github.com/koalatiapp/tool-responsive/workflows/CI/badge.svg)](https://github.com/koalatiapp/tool-responsive/actions)
+[![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@koalati/tool-responsive)](https://www.npmjs.com/package/@koalati/tool-responsive)
 
 This is the repository for Koalati's built-in Responsive tool. This tool analyzes webpages on different resolutions to detect responsive design issues and inconsistencies.
 
